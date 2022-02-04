@@ -109,3 +109,5 @@ module.exports = team => {
     </html>
         `;
     };
+
+    module.exports = createTeam
