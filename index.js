@@ -1,53 +1,47 @@
-const inquirer = require("inquirer");
-const path = require("path");
 const fs = require("fs");
+const inquirer = require("inquirer");
+
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const DIST_DIR = path.resolve(__dirname, 'dist');
-const distPath = path.join(DIST_DIR, 'index.html');
+
 const createTeam = require('./src/template.js');
 
-let teamArray = [];
+let team = [];
 
 function init() {
-  function createManager() {
+  const createManager = () => {
     inquirer
       .prompt([
         {
           type: "input",
-          name: "managerName",
+          name: "name",
           message: "What is the name of the team Manager?",
         },
         {
           type: "input",
-          name: "managerId",
+          name: "id",
           message: "What is the employee ID of the team Manager?",
         },
         {
           type: "input",
-          name: "managerEmail",
+          name: "email",
           message: "What is the email of the team Manager?",
         },
         {
           type: "input",
-          name: "managerOffice",
+          name: "office",
           message: "What is the office number?",
         },
       ])
-      .then((answers) => {
-        let manager = new Manager(
-          answers.managerName,
-          answers.managerId,
-          answers.managerEmail,
-          answers.managerOffice
-        );
-        teamArray.push(manager);
-        console.log(teamArray);
+      .then((managerAns) => {
+        const { name, id, email, office } = managerAns;
+        const manager = new Manager (name, id, email, office);
+        team.push(manager);
         addMembers();
       });
   }
-  function addMembers() {
+  const addMembers = () => {
     inquirer
       .prompt([
         {
@@ -70,85 +64,86 @@ function init() {
       });
   }
 
-  function createEngineer() {
+  const createEngineer = () => {
     inquirer
       .prompt([
         {
           type: "input",
-          name: "engineerName",
+          name: "name",
           message: "What is the name of the Engineer?",
         },
         {
           type: "input",
-          name: "engineerId",
+          name: "id",
           message: "What is the employee ID of the Engineer?",
         },
         {
           type: "input",
-          name: "engineerEmail",
+          name: "email",
           message: "What is the email of the Engineer?",
         },
         {
           type: "input",
-          name: "engineerGithub",
+          name: "github",
           message: "What is the GitHub username of the Engineer?",
         },
       ])
-      .then((answers) => {
-        let engineer = new Engineer(
-          answers.engineerName,
-          answers.engineerId,
-          answers.engineerEmail,
-          answers.engineerGithub
-        );
-        teamArray.push(engineer);
+      .then((engineerAns) => {
+        const { name, id, email, github} = engineerAns
+        const engineer = new Engineer(name, id, email, github);
+        team.push(engineer);
         addMembers();
       });
   }
 
-  function createIntern() {
+  const createIntern = () => {
     inquirer
       .prompt([
         {
           type: "input",
-          name: "internName",
+          name: "name",
           message: "What is the name of the Intern?",
         },
         {
           type: "input",
-          name: "internId",
+          name: "id",
           message: "What is the employee ID of the Intern?",
         },
         {
           type: "input",
-          name: "internEmail",
+          name: "email",
           message: "What is the email of the Intern?",
         },
         {
           type: "input",
-          name: "internSchool",
+          name: "school",
           message: "What is the school of the Intern?",
         },
       ])
-      .then((answers) => {
-        let intern = new Intern(
-          answers.internName,
-          answers.internId,
-          answers.internEmail,
-          answers.internSchool
-        );
-        teamArray.push(intern);
+      .then((internAns) => {
+        const { name, id, email, school } = internAns
+        const intern = new Intern(name, id, email, school)
+        team.push(intern);
         addMembers();
       });
   }
 
   function buildTeam() {
-      console.log('Your team was successfully created!');
-      fs.writeFileSync(distPath, createTeam(teamArray));
+      console.log(team);
+      fs.writeFile('./dist/index.html', createTeam(team), err => {
+          if (err) {
+              console.log(err)
+          } else {
+            console.log('Your team was successfully created!');
+          }
+      });
   }
 
   createManager();
+
 }
 
 init();
+    
+    
 
