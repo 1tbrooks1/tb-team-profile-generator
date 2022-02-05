@@ -5,25 +5,54 @@ function generateTeam(data) {
     .filter(employee => employee.getRole() === "Manager")
     .map(({ name, id, email, office }) => {
         return `
-        <div class="container d-flex justify-content-center">
-        <div class="row">
-            <div class="col-3 ">
-                <div class="card m-2" style="width: 18rem;">
-                    <div class="card-body">
-                      <h4 class="card-title">${name}</h4>
-                      <h5 class="card-subtitle">${id}</h5>
-                      <h5 class="card-subtitle mb-2 text-muted">${email}</h5>
-                      <h5 class="card-subtitle mb-2 text-muted">${office}</h5>
-                      
-                    </div>
-                  </div>
-            </div>
-          </div>
-    </div>
-        `;
+        <div class="card m-5" style="width: 18rem;">
+  <div class="card-body m-5">
+    <h5 class="card-title">Manager</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${name}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">${id}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">${office}</h6>
+    <a href="mailto:${email}" class="card-link">${email}</a>
+  </div>
+</div>`
+        ;
     })
 
     card.push(createManager);
+
+    const createEngineer = data
+    .filter(employee => employee.getRole() === "Engineer")
+    .map(({ name, id, email, github }) => {
+        return `
+        <div class="card m-5" style="width: 18rem;">
+  <div class="card-body m-5">
+    <h5 class="card-title">Engineer</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${name}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">${id}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">${github}</h6>
+    <a href="mailto:${email}" class="card-link">${email}</a>
+  </div>
+</div>`
+    })
+    
+    card.push(createEngineer);
+    
+
+    const createIntern = data
+    .filter(employee => employee.getRole() === "Intern")
+    .map(({ name, id, email, school }) => {
+        return `
+        <div class="card m-5" style="width: 18rem;">
+  <div class="card-body m-5">
+    <h5 class="card-title">Engineer</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${name}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">${id}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">${school}</h6>
+    <a href="mailto:${email}" class="card-link">${email}</a>
+  </div>
+</div>`
+    })
+
+    card.push(createIntern);
 
     return card.join('');
 
