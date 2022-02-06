@@ -165,10 +165,10 @@ function init() {
         },
         {
           type: "input",
-          name: "github",
+          name: "gitHub",
           message: "What is the GitHub username of the Engineer?",
-          validate: github => {
-            if(github.length > 0) {
+          validate: gitHub => {
+            if(gitHub.length > 0) {
               return true;
             } else {
               console.log(' Please enter valid GitHub username.')
@@ -178,8 +178,8 @@ function init() {
         },
       ])
       .then((engineerAns) => {
-        const { name, id, email, github} = engineerAns
-        const engineer = new Engineer(name, id, email, github);
+        const { name, id, email, gitHub} = engineerAns
+        const engineer = new Engineer(name, id, email, gitHub);
         team.push(engineer);
         console.log('Engineer successfully created!');
         addMembers();
@@ -258,7 +258,6 @@ function init() {
   }
 // generates HTML page with input from user
   function buildTeam() {
-      console.log(team);
       fs.writeFile('./dist/index.html', createTeam(team), err => {
           if (err) {
               console.log(err)

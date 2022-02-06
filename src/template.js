@@ -1,4 +1,3 @@
-// 
 function generateTeam(data) {
     card = [];
 
@@ -26,7 +25,7 @@ function generateTeam(data) {
 
     const createEngineer = data
     .filter(employee => employee.getRole() === "Engineer")
-    .map(({ name, id, email, github }) => {
+    .map(({ name, id, email, gitHub }) => {
         return `
         <div class="card employee-card">
             <div class="card-header bg-primary text-white">
@@ -37,7 +36,7 @@ function generateTeam(data) {
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${id}</li>
                     <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
-                    <li class="list-group-item">GitHub: <a href="https://github.com/${github}" target="_blank" rel="noopener noreferrer">${github}</a></li>
+                    <li class="list-group-item">GitHub: <a href="https://github.com/${gitHub}" target="_blank" rel="noopener noreferrer">${gitHub}</a></li>
                 </ul>
             </div>
         </div>
@@ -83,14 +82,14 @@ module.exports = (data) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
-    <title>My Developer Team</title>
+    <title>My Team</title>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 jumbotron mb-3 team-heading bg-primary">
-                <h1 class="text-center text-white">Developer Team</h1>
+                <h1 class="text-center text-white">My Team</h1>
             </div>
         </div>
     </div>
