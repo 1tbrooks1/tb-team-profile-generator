@@ -13,7 +13,9 @@ const createTeam = require('./src/template.js');
 // array for team members
 let team = [];
 
+// start of the app
 function init() {
+  // asks questions of manager with validation 
   const createManager = () => {
     console.log(`
     ==================
@@ -84,7 +86,13 @@ function init() {
         addMembers();
       });
   }
+  // gives user option to add another team member or build team
   const addMembers = () => {
+    console.log(`
+    ==============
+      Add Member 
+    ==============  
+    `)
     return inquirer
       .prompt([
         {
@@ -106,7 +114,7 @@ function init() {
         }
       });
   }
-
+// prompts user with questions for engineer
   const createEngineer = () => {
     console.log(`
     ===================
@@ -177,7 +185,7 @@ function init() {
         addMembers();
       });
   }
-
+// prompts user with question for Intern
   const createIntern = () => {
     console.log(`
     =================
@@ -248,7 +256,7 @@ function init() {
         addMembers();
       });
   }
-
+// generates HTML page with input from user
   function buildTeam() {
       console.log(team);
       fs.writeFile('./dist/index.html', createTeam(team), err => {

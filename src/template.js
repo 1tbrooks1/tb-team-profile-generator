@@ -1,3 +1,4 @@
+// 
 function generateTeam(data) {
     card = [];
 
